@@ -30,12 +30,14 @@
             padding-bottom: 20px;
             border-bottom: 2px solid #dceeff;
         }
-        /* ĐÃ CHỈNH LOGO TO HƠN */
+        
+        /* ĐÃ CHỈNH LOGO TỰ ĐỘNG CĂN CHỈNH KÍCH THƯỚC */
         .header-logos img {
             max-height: 130px; 
-            max-width: 300px;
+            max-width: 45%; /* Quan trọng: Giới hạn mỗi logo chiếm tối đa 45% chiều rộng để không bị lấn nhau */
             object-fit: contain;
         }
+
         .title-section {
             text-align: center;
             margin-bottom: 30px;
@@ -51,7 +53,6 @@
             color: #4682b4;
             font-weight: bold;
         }
-        /* ĐÃ THÊM CSS CHO SLOGAN */
         .slogan {
             font-size: 19px;
             font-weight: bold;
@@ -136,6 +137,29 @@
             padding: 10px;
             border-radius: 4px;
             border: 1px solid #e2f0fb;
+        }
+
+        /* TỐI ƯU GIAO DIỆN RIÊNG CHO MÀN HÌNH ĐIỆN THOẠI (Dưới 600px) */
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            .header-logos img {
+                max-height: 70px; /* Tự động thu lùn logo xuống khi xem trên điện thoại */
+            }
+            .test-name {
+                font-size: 20px; /* Thu nhỏ tên bài kiểm tra */
+            }
+            .slogan {
+                font-size: 15px; /* Thu nhỏ slogan */
+            }
+            .tool-name {
+                font-size: 14px;
+            }
+            .student-list {
+                grid-template-columns: 1fr; /* Danh sách sinh viên xếp thành 1 cột thay vì 2 cột */
+            }
         }
     </style>
 </head>
