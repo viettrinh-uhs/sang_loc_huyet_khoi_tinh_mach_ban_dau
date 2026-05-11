@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sàng lọc Huyết khối tĩnh mạch sâu (DVT)</title>
+    <style>
+        /* CSS: Tông màu Xanh Lam Nhạt (Soft Blue) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(92, 158, 237, 0.15);
+        }
+        .header-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #dceeff;
+        }
+        /* ĐÃ CHỈNH LOGO TO HƠN */
+        .header-logos img {
+            max-height: 130px; 
+            max-width: 300px;
+            object-fit: contain;
+        }
+        .title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .tool-name {
+            font-size: 16px;
+            color: #5a7184;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .test-name {
+            font-size: 24px;
+            color: #4682b4;
+            font-weight: bold;
+        }
+        /* ĐÃ THÊM CSS CHO SLOGAN */
+        .slogan {
+            font-size: 19px;
+            font-weight: bold;
+            font-style: italic;
+            color: #4a8bda;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .question-block {
+            background: #f4fafe;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #87ceeb;
+            border-radius: 4px;
+        }
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .options label {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: #5c9eed;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.1s;
+        }
+        .submit-btn:hover {
+            background: #4a8bda;
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        #result-box {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .low-risk { background: #c6f6d5; border: 1px solid #38a169; }
+        .med-risk { background: #feebc8; border: 1px solid #dd6b20; }
+        .high-risk { background: #fed7d7; border: 1px solid #e53e3e; }
+        .high-risk h3 { color: #c53030; font-weight: bold; }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #dceeff;
+            font-size: 14px;
+        }
+        .disclaimer {
+            background: #eaf4ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #4a657a;
+        }
+        .team-info {
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        .student-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .student-item {
+            background: #f4fafe;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #e2f0fb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-logos">
+        <img src="dhqg.jpg" alt="Logo ĐHQG">
+        <img src="uhs.jpg" alt="Logo UHS">
+    </div>
+
+    <div class="title-section">
+        <div class="tool-name">
+            Công cụ tầm soát trực tuyến này xây dựng chặt chẽ dựa trên Thang điểm Wells – thang đo chuẩn quốc tế trong y khoa đang được các bác sĩ sử dụng để đánh giá mức độ nguy cơ mắc huyết khối tĩnh mạch sâu.
+        </div>
+        <div class="test-name">Bài kiểm tra nguy cơ mắc huyết khối tĩnh mạch sâu (DVT)</div>
+        
+        <div class="slogan">"Thấu hiểu triệu chứng - Bảo vệ đôi chân - Ngừa biến chứng phổi"</div>
+        
+        <p><em>Yêu cầu: Trả lời Có/Không cho các câu dưới đây.</em></p>
+    </div>
+
+    <form id="dvtForm">
+        <div class="question-block">
+            <div class="question-text">1. Bạn có đang điều trị bệnh ung thư, hoặc vừa điều trị trong vòng 6 tháng qua không?</div>
+            <div class="options">
+                <label><input type="radio" name="q1" value="1" required> Có</label>
+                <label><input type="radio" name="q1" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">2. Chân của bạn có đang bị liệt, yếu hẳn đi, hoặc mới phải bó bột không?</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value="1" required> Có</label>
+                <label><input type="radio" name="q2" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">3. Bạn có vừa phải nằm liệt giường hơn 3 ngày, hoặc mới trải qua một cuộc phẫu thuật lớn (như mổ xương, mổ ổ bụng) trong vòng 3 tháng nay không?</div>
+            <div class="options">
+                <label><input type="radio" name="q3" value="1" required> Có</label>
+                <label><input type="radio" name="q3" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">4. Khi dùng tay ấn nắn dọc theo giữa bắp chân hoặc đùi, bạn có thấy đau chói không?</div>
+            <div class="options">
+                <label><input type="radio" name="q4" value="1" required> Có</label>
+                <label><input type="radio" name="q4" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">5. Có phải toàn bộ một bên chân của bạn đang bị sưng to lên rõ rệt không?</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="1" required> Có</label>
+                <label><input type="radio" name="q5" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">6. Bắp chân bị đau của bạn có sưng to hơn bắp chân bên kia từ 3cm trở lên không (có thể dùng thước dây để đo)?</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="1" required> Có</label>
+                <label><input type="radio" name="q6" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">7. Khi dùng ngón tay ấn mạnh vào vùng bị sưng ở chân, da có bị lõm xuống một lúc lâu rồi mới phồng trở lại bình thường không?</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="1" required> Có</label>
+                <label><input type="radio" name="q7" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">8. Bạn có thấy các đường gân xanh (tĩnh mạch) nổi hằn rõ lên dưới da ở bên chân bị đau không (không tính bệnh suy giãn tĩnh mạch đã có từ trước)?</div>
+            <div class="options">
+                <label><input type="radio" name="q8" value="1" required> Có</label>
+                <label><input type="radio" name="q8" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-text">9. Trước đây bạn đã từng bị chẩn đoán mắc cục máu đông ở chân (Huyết khối tĩnh mạch sâu) bao giờ chưa?</div>
+            <div class="options">
+                <label><input type="radio" name="q9" value="1" required> Có</label>
+                <label><input type="radio" name="q9" value="0"> Không</label>
+            </div>
+        </div>
+
+        <div class="question-block" style="border-left-color: #e53e3e;">
+            <div class="question-text">10. Bạn có đang bị chấn thương (như rách cơ, bong gân) hay bệnh lý nào khác ở chân mà bạn nghĩ nó là nguyên nhân thực sự gây ra sưng đau không?</div>
+            <div class="options">
+                <label><input type="radio" name="q10" value="-2" required> Có</label>
+                <label><input type="radio" name="q10" value="0"> Không</label>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="calculateResult()">Xem Kết Quả</button>
+    </form>
+
+    <div id="result-box">
+        <h3 id="result-title"></h3>
+        <p id="result-advice"></p>
+        <p><strong>Lưu ý:</strong> Kết quả chỉ mang tính tham khảo ban đầu, không thay thế chẩn đoán của bác sĩ.</p>
+    </div>
+
+    <div class="footer">
+        <div class="disclaimer">
+            <strong>Lưu ý:</strong> Công cụ này chỉ mang tính chất tham khảo giáo dục, sàng lọc nguy cơ ban đầu và không thay thế cho chẩn đoán y khoa của bác sĩ.
+        </div>
+        
+        <div class="team-info">
+            <p><strong>GIÁO VIÊN HƯỚNG DẪN:</strong> Ths.DD.Nguyễn Thị Kim Tuyến</p>
+            <p><strong>NHÓM 1 - DANH SÁCH SINH VIÊN THAM GIA:</strong></p>
+            <div class="student-list">
+                <div class="student-item">
+                    <strong>Nguyễn Đinh Diệu Tâm</strong><br>Điều dưỡng 2023<br>MSSV: 237720301127
+                </div>
+                <div class="student-item">
+                    <strong>Võ Thị Phương Thảo</strong><br>Điều dưỡng 2023<br>MSSV: 237720301136
+                </div>
+                <div class="student-item">
+                    <strong>Nguyễn Bùi Anh Thư</strong><br>Điều dưỡng 2023<br>MSSV: 237720301143
+                </div>
+                <div class="student-item">
+                    <strong>Đỗ Việt Trinh</strong><br>Điều dưỡng 2025<br>MSSV: 257720301151
+                </div>
+            </div>
+            <p style="margin-top: 15px;"><strong>Nguồn tư liệu y khoa:</strong> Thang điểm Wells (Wells Criteria for DVT) và tham vấn chuyên môn từ sinh viên Y khoa.</p>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
